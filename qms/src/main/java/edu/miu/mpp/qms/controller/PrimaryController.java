@@ -1,6 +1,8 @@
 package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
+
+import edu.miu.mpp.qms.App;
 import javafx.fxml.FXML;
 
 public class PrimaryController {
