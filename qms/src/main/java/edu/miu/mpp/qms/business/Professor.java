@@ -6,8 +6,8 @@ public class Professor extends User {
 
 	private Collection<Quiz> quiz;
 
-	public Professor(String username, String password, String name, String lname) {
-		super(username, password, name, lname);
+	public Professor(String username, String password, String name, String lname, UserType userType ) {
+		super(username, password, name, lname, userType);
 	}
 
 

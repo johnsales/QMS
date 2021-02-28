@@ -1,7 +1,5 @@
 package edu.miu.mpp.qms.business;
 
-import java.util.List;
-
 public class User {
 
 	private Long id;
@@ -9,12 +7,14 @@ public class User {
 	private String password;
 	private String name;
 	private String lname;
+	private UserType userType;
 	
-	public User(String username, String password, String name, String lname) {
+	public User(String username, String password, String name, String lname, UserType userType) {
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.lname = lname;
+		this.userType = userType;
 	}
 
 
@@ -61,6 +61,14 @@ public class User {
 		this.lname = lname;
 	}
 
+	public UserType getUserType() {
+		return userType;
+	}
+	
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

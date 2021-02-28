@@ -5,6 +5,7 @@ import java.io.IOException;
 import edu.miu.mpp.qms.App;
 import edu.miu.mpp.qms.business.Professor;
 import edu.miu.mpp.qms.business.User;
+import edu.miu.mpp.qms.business.UserType;
 import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,23 +31,13 @@ public class RegistrationController {
     private RadioButton stu;
     @FXML
     private Button register;
-    @FXML
-    final ToggleGroup group = new ToggleGroup();
-    
-    public RegistrationController() {
-		// TODO Auto-generated constructor stub
-//    	prof.setToggleGroup(group);
-//    	stu.setToggleGroup(group);
-	}
-
-
     
 	@FXML
     void registerationAction(ActionEvent event) throws IOException {
 		//verify is is teacher or student
-		User newUser = new Professor(username.getText(), pwd.getText(), fname.getText(), lname.getText());
+		User newUser = new User(username.getText(), pwd.getText(), fname.getText(), lname.getText(), prof.isSelected() ? UserType.PROFESSOR : UserType.STUDENT);
 		LoadData.getUsers().add(newUser);
-		App.setRoot("quizManagement");
+		App.setRoot("login");
     }
     @FXML
     void adminSigninAction(ActionEvent event) throws IOException {

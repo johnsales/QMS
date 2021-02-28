@@ -7,8 +7,8 @@ public class Student extends User {
 	private int StudentId;
 	private Collection<Result> result;
 
-	public Student(String username, String password, String name, String lname, int StudentId) {
-		super(username, password, name, lname);
+	public Student(String username, String password, String name, String lname, int StudentId, UserType userType) {
+		super(username, password, name, lname,userType);
 		this.StudentId = StudentId;
 	}
 

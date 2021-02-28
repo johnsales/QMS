@@ -1,8 +1,13 @@
+
 package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import edu.miu.mpp.qms.App;
+import edu.miu.mpp.qms.business.User;
+import edu.miu.mpp.qms.business.UserType;
+import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,27 +36,14 @@ public class LoginController {
 
     @FXML
     void signinAction(ActionEvent event) throws IOException {
-    	String mainUser = "teacher";
-    	String mainPass = "teacher";
-    	String studentUser = "student";
-    	String studentPass = "student";
+    	Optional<User> user = LoadData.getUsers().stream().filter(u -> u.getUsername().equals(userName.getText()) && u.getPassword().equals(password.getText())).findFirst();
     	
-    	if(userName.getText().trim().equalsIgnoreCase(mainUser) && password.getText().trim().equalsIgnoreCase(mainPass)) {
+    	if(user.isPresent()) {
     		failedAuthText.setVisible(false);
-    		if(mainUser.equals("teacher"))
-    			App.setRoot("professorDashBoard");
-    		else 
-    			App.setRoot("choseQuiz");
-    	}else {
-    		failedAuthText.setVisible(true);
-    	}
-    	
-    	if(userName.getText().trim().equalsIgnoreCase(studentUser) && password.getText().trim().equalsIgnoreCase(studentPass)) {
-    		failedAuthText.setVisible(false);
-    		if(mainUser.equals("teacher"))
-    			App.setRoot("studentDashBoard");
-    		else 
-    			App.setRoot("choseQuiz");
+    		if(user.get().getUserType() == UserType.PROFESSOR)
+    			App.setRoot("professorDashboard");
+    		else  
+    			App.setRoot("studentDashboard");
     	}else {
     		failedAuthText.setVisible(true);
     	}
