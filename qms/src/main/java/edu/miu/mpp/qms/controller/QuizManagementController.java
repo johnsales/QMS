@@ -13,11 +13,11 @@ public class QuizManagementController {
     }
     @FXML
     private void logoutAction() throws IOException {
-        App.setRoot("adminLogin");
+        App.setRoot("login");
     }
     @FXML
     private void saveQuestion() throws IOException {
-        App.setRoot("secondary");
+        App.setRoot("login");
     }
  
 }

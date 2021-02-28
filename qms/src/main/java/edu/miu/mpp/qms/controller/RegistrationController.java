@@ -2,8 +2,6 @@ package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
 
-import javax.swing.ButtonGroup;
-
 import edu.miu.mpp.qms.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
