@@ -33,7 +33,7 @@ public class Registeration {
 
     @FXML
     void registerationAction(ActionEvent event) {
-
+    	//
     }
 
 }
