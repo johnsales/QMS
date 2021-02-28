@@ -33,11 +33,23 @@ public class LoginController {
     void signinAction(ActionEvent event) throws IOException {
     	String mainUser = "teacher";
     	String mainPass = "teacher";
+    	String studentUser = "student";
+    	String studentPass = "student";
     	
     	if(userName.getText().trim().equalsIgnoreCase(mainUser) && password.getText().trim().equalsIgnoreCase(mainPass)) {
     		failedAuthText.setVisible(false);
     		if(mainUser.equals("teacher"))
-    			App.setRoot("quizManagement");
+    			App.setRoot("professorDashBoard");
+    		else 
+    			App.setRoot("choseQuiz");
+    	}else {
+    		failedAuthText.setVisible(true);
+    	}
+    	
+    	if(userName.getText().trim().equalsIgnoreCase(studentUser) && password.getText().trim().equalsIgnoreCase(studentPass)) {
+    		failedAuthText.setVisible(false);
+    		if(mainUser.equals("teacher"))
+    			App.setRoot("studentDashBoard");
     		else 
     			App.setRoot("choseQuiz");
     	}else {

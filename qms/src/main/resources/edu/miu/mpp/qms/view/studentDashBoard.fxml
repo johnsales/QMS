@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="500.0" prefWidth="500.0" type="AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miu.mpp.qms.controller.StudentDashBoard">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miu.mpp.qms.controller.StudentDashBoard">
    <children>
       <Pane prefHeight="500.0" prefWidth="500.0">
          <children>
@@ -42,4 +42,4 @@
          </children>
       </Pane>
    </children>
-</fx:root>
+</AnchorPane>

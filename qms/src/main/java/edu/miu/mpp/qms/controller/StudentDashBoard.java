@@ -2,6 +2,9 @@ package edu.miu.mpp.qms.controller;
 
 
 
+import java.io.IOException;
+
+import edu.miu.mpp.qms.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,14 +25,10 @@ public class StudentDashBoard {
     }
 
     @FXML
-    void myReportBtnAction(ActionEvent event) {
-
+    void myReportBtnAction(ActionEvent event) throws IOException {
+    	App.setRoot("studentReport");
     }
     
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 
 }
