@@ -65,8 +65,8 @@ public class QuestionManagementController {
     }
 
     @FXML
-    void logoutAction(ActionEvent event) {
-
+    void logoutAction(ActionEvent event) throws IOException {
+    	 App.setRoot("adminLogin");
     }
 
     @FXML
