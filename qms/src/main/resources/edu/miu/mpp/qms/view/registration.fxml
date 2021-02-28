@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="410.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miu.mpp.qms.controller.RegistrationController">
    <children>
-      <AnchorPane fx:id="fname" prefHeight="417.0" prefWidth="400.0">
+      <AnchorPane prefHeight="417.0" prefWidth="400.0">
          <children>
             <Pane prefHeight="65.0" prefWidth="400.0" style="-fx-background-color: #191970;">
                <children>
@@ -22,7 +22,7 @@
                   </Text>
                </children>
             </Pane>
-            <TextField layoutX="45.0" layoutY="100.0" promptText="First Name" />
+            <TextField fx:id="fname" layoutX="45.0" layoutY="100.0" promptText="First Name" />
             <TextField fx:id="lname" layoutX="218.0" layoutY="100.0" promptText="Last Name" />
             <TextField fx:id="username" layoutX="45.0" layoutY="148.0" promptText="User Name" />
             <PasswordField fx:id="pwd" layoutX="45.0" layoutY="195.0" promptText="Password" />

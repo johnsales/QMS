@@ -23,4 +23,15 @@ public class Professor extends User {
 
 	}
 
+
+	@Override
+	public String toString() {
+		return "Professor [quiz=" + quiz + ", getId()=" + getId() + ", getUsername()=" + getUsername()
+				+ ", getPassword()=" + getPassword() + ", getName()=" + getName() + ", getLname()=" + getLname()
+				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
+	
+
 }
