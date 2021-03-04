@@ -6,7 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import edu.miu.mpp.qms.business.Quiz;
+import edu.miu.mpp.qms.controller.Controller;
+import edu.miu.mpp.qms.controller.QuestionManagementController;
 
 /**
  * JavaFX App
@@ -14,6 +19,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage primaryStage;
     private Parent parent;
     
     @Override
@@ -23,6 +29,7 @@ public class App extends Application {
     	//clean error authentication
     	//parent.getChildrenUnmodifiable().get(6).setVisible(false);
     	
+    	this.primaryStage = stage;
     	scene = new Scene(parent, 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -39,6 +46,42 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    
+    public static void showQuestionWithData(Quiz data, String fxml) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/"+fxml+".fxml"));
+           // loader.setLocation(App.class.getResource("view/questionManagement.fxml"));
+            Parent root = (Parent) loader.load();
+            
+            // Set the data into the controller.
+            QuestionManagementController controller = loader.getController();
+            //System.out.println("Data: "+data.getStartTime());
+            controller.setQuiz(data);
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void showSceneWithData(Object data, String fxml) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/"+fxml+".fxml"));
+           // loader.setLocation(App.class.getResource("view/questionManagement.fxml"));
+            Parent root = (Parent) loader.load();
+            
+            // Set the data into the controller.
+            Controller controller = loader.getController();
+            //System.out.println("Data: "+data.getStartTime());
+            controller.setData(data);
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

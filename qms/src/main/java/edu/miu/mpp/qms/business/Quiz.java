@@ -13,6 +13,13 @@ public class Quiz {
 	private List<Result> result;
 	private List<Question> question;
 	
+	@Override
+	public String toString()
+	{
+		return "Quizz: \n Start time: "+startTime+" \n End Time:  "+endTime
+				+"\n DUration: "+duration+"\n";
+	}
+	
 	public Quiz(Long id,LocalDateTime startTime, LocalDateTime endTime, double duration, Professor professor) {
 		this.id = id;
 		this.startTime = startTime;

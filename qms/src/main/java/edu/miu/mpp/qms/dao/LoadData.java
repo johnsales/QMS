@@ -15,6 +15,7 @@ public class LoadData {
 	//temp data without database
 	private static List<User> userList = new ArrayList<>();
 	private static List<Quiz> quizzes = new ArrayList<>();
+	private static List<Professor> professorList = new ArrayList<>();
 	
 	public static List<User> getUsers() {
 		return userList;
@@ -60,4 +61,7 @@ public class LoadData {
 		return quizzes;
 	}
 
+	public static List<Professor> getProfessors() {
+		return professorList;
+	}
 }
