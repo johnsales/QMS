@@ -27,12 +27,11 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-//    	parent = loadFXML("login");
-    	parent = loadFXML("studentDashboard");
+    	parent = loadFXML("login");
+//    	parent = loadFXML("studentDashboard");
     	//clean error authentication
-    	//parent.getChildrenUnmodifiable().get(6).setVisible(false);
+    	parent.getChildrenUnmodifiable().get(6).setVisible(false);
     	
-    	this.primaryStage = stage;
     	scene = new Scene(parent, 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -43,7 +42,9 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/"+fxml + ".fxml"));
+    	
+    	FXMLLoader fxmlLoader = new FXMLLoader();
+    	fxmlLoader.setLocation(App.class.getResource("view/"+fxml + ".fxml"));
     	return fxmlLoader.load();
     }
 
