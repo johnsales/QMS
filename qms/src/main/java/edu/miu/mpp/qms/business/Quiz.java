@@ -1,6 +1,7 @@
 package edu.miu.mpp.qms.business;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz {
@@ -11,7 +12,7 @@ public class Quiz {
 	private double duration;
 	private Professor professor;
 	private List<Result> result;
-	private List<Question> question;
+	private List<Question> question = new ArrayList<Question>();
 	
 	@Override
 	public String toString()
@@ -28,6 +29,10 @@ public class Quiz {
 		this.professor = professor;
 	}
 	
+	public Quiz() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
