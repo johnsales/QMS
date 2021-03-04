@@ -10,6 +10,7 @@ import edu.miu.mpp.qms.business.Question;
 import edu.miu.mpp.qms.business.Quiz;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -105,6 +106,12 @@ public class QuestionManagementController extends Controller {
 //    
 	@FXML
 	private void switchToquiz() throws IOException {
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+    	
 		App.setRoot("quizManagement");
 	}
 
@@ -112,6 +119,12 @@ public class QuestionManagementController extends Controller {
 	
 	synchronized void confirmQuestion(ActionEvent event) {
 		//System.out.println("local: "+quiz+ "\n getter: "+getQuiz());
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+		
 		Quiz q = getQuiz();
 		App.showQuestionToControlQuiz(q, "quizSummary");
 
@@ -162,6 +175,14 @@ public class QuestionManagementController extends Controller {
 
 	@FXML
 	void addQuestion(ActionEvent event) {
+		
+		
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+    	
 		Question question = getQuestion(quiz);
 		//System.out.println("Data sent: "+quiz.getDuration());
 		
@@ -179,6 +200,47 @@ public class QuestionManagementController extends Controller {
 		QuizHolder holder = QuizHolder.getInstance();
 		Quiz u = holder.getQuiz();
 
+	}
+	
+	   String validateMessage ;
+	    public void validatingFields() {
+	    	validateMessage = "";
+	    	
+	    	if (questionTxtField.getText().length() < 1 ) {
+	    		validateMessage = "Enter Question\n";
+	    	}
+	    	
+	    
+	    	if (opt1TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 1\n";
+	    	}
+	    	
+	    	if (opt2TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 2\n";
+	    	}
+	    	
+	    	if (opt3TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 3\n";
+	    	}
+	    	
+	    	if (opt3TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 4\n";
+	    	}
+	    	
+	    	if(!correctARadio.isSelected() && !correctBRadio.isSelected() && !correctCRadio.isSelected() && !correctDRadio.isSelected()) {
+	    		validateMessage = validateMessage +"Select Correct Answer\n";
+
+	    	}	    
+	    	
+	    }
+	    
+	    public void alertMessage() {
+	  	  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	  	    alert.setTitle("Alert");
+	  	    alert.setHeaderText("Data Missing");
+	  	    alert.setContentText(validateMessage);
+	  	    alert.showAndWait();
+	 
 	}
 
 

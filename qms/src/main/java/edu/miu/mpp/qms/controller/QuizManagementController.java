@@ -10,6 +10,7 @@ import edu.miu.mpp.qms.business.Question;
 import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.business.UserType;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -58,6 +59,13 @@ public class QuizManagementController extends Controller {
 
 	@FXML
 	private void switchToQuestion() throws IOException {
+		
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+		
 //		LocalDate startT = startime.getValue();
 //		LocalDate endT = endTime.getValue();
 		getQuizFromForm();
@@ -76,5 +84,33 @@ public class QuizManagementController extends Controller {
 	private void backToProfDashBoard() throws IOException {
 		App.setRoot("professorDashBoard");
 	}
+	
+    String validateMessage ;
+    public void validatingFields() {
+    	validateMessage = "";
+    	
+    	 ;
+    	if (startime.getValue() == null) {
+    		validateMessage = "Enter Start time\n";
+    	}
+    	if (endTime.getValue() == null) {
+    		validateMessage = validateMessage +"Enter End Time\n";
+    	}
+    
+    	if (duration.getText().length() < 1) {
+    		validateMessage = validateMessage +"Enter Duration\n";
+    	}
+    
+    	
+    }
+    
+    public void alertMessage() {
+  	  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+  	    alert.setTitle("Alert");
+  	    alert.setHeaderText("Data Missing");
+  	    alert.setContentText(validateMessage);
+  	    alert.showAndWait();
+ 
+}
 
 }
