@@ -2,17 +2,16 @@ package edu.miu.mpp.qms;
 
 import java.io.IOException;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.controller.ControlQuizSummary;
 import edu.miu.mpp.qms.controller.Controller;
 import edu.miu.mpp.qms.controller.QuestionManagementController;
+import edu.miu.mpp.qms.controller.QuizController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * JavaFX App
@@ -79,6 +78,23 @@ public class App extends Application {
             ControlQuizSummary controller = loader.getController();
             //System.out.println("Data: "+data.getStartTime());
             controller.initialize(data);
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void sendQuizToQuizController(Quiz data, String fxml) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("view/"+fxml+".fxml"));
+           // loader.setLocation(App.class.getResource("view/questionManagement.fxml"));
+            Parent root = (Parent) loader.load();
+            
+            // Set the data into the controller.
+            QuizController controller = loader.getController();
+            controller.setQuiz(data);
             scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
