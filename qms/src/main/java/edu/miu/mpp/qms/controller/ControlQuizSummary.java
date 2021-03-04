@@ -10,11 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import edu.miu.mpp.qms.App;
+import edu.miu.mpp.qms.LoadData;
 import edu.miu.mpp.qms.business.Professor;
 import edu.miu.mpp.qms.business.Question;
 import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.business.UserType;
-import edu.miu.mpp.qms.dao.LoadData;
 
 public class ControlQuizSummary extends QuestionManagementController {
 
@@ -83,7 +83,7 @@ public class ControlQuizSummary extends QuestionManagementController {
     @FXML
     void confirmAction(ActionEvent event) throws IOException {
     	//LoadData
-    	LoadData.getQuizzes().add(quizzies);
+    	App.getAllQuizzes().add(quizzies);
     	App.setRoot("professorDashBoard");
     	
     }

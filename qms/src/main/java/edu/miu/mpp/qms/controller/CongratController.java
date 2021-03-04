@@ -25,7 +25,7 @@ public class CongratController {
     public void initialize(Double score) {
     	this.score = score;
     	resultLabel.setText(score+"");
-    	if (score >= 8) {
+    	if (this.score >= 80.0) {
     		congratMessage.setText("Congratulations you passed !!!!");
     	} else
     	{

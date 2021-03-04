@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import edu.miu.mpp.qms.App;
+import edu.miu.mpp.qms.LoadData;
 import edu.miu.mpp.qms.business.Quiz;
-import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,7 +37,7 @@ public class ChooseQuiz implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		selectQuiz.getItems().addAll(LoadData.getQuizzes());
+		selectQuiz.getItems().addAll(App.getAllQuizzes());
 	}
 	
 	 @FXML

@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 import edu.miu.mpp.qms.App;
+import edu.miu.mpp.qms.LoadData;
 import edu.miu.mpp.qms.business.User;
 import edu.miu.mpp.qms.business.UserType;
-import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

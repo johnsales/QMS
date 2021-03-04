@@ -1,6 +1,7 @@
 package edu.miu.mpp.qms;
 
 import java.io.IOException;
+import java.util.List;
 
 import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.controller.CongratController;
@@ -22,10 +23,11 @@ public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
     private Parent parent;
+    private static List<Quiz> getAllQuizzes = LoadData.getQuizzes();
     
     @Override
     public void start(Stage stage) throws IOException {
-    	//parent = loadFXML("login");
+//    	parent = loadFXML("login");
     	parent = loadFXML("studentDashboard");
     	//clean error authentication
     	//parent.getChildrenUnmodifiable().get(6).setVisible(false);
@@ -111,7 +113,7 @@ public class App extends Application {
             
             // Set the data into the controller.
             CongratController controller = loader.getController();
-            controller.setScore(data);
+            controller.initialize(data);
             scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,5 +137,10 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+
+    public static List<Quiz> getAllQuizzes(){
+    	return getAllQuizzes;
+    }
+    
 
 }
