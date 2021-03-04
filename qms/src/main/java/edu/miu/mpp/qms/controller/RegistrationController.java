@@ -35,7 +35,8 @@ public class RegistrationController {
 	@FXML
     void registerationAction(ActionEvent event) throws IOException {
 		//verify is is teacher or student
-		User newUser = new User(username.getText(), pwd.getText(), fname.getText(), lname.getText(), prof.isSelected() ? UserType.PROFESSOR : UserType.STUDENT);
+		User newUser = new User(username.getText(), pwd.getText(), fname.getText(), lname.getText());
+		newUser.setUserType(prof.isSelected() ? UserType.PROFESSOR : UserType.STUDENT);
 		LoadData.getUsers().add(newUser);
 		App.setRoot("login");
     }

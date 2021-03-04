@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Quiz {
 
+	private Long id;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private double duration;
@@ -12,11 +13,19 @@ public class Quiz {
 	private List<Result> result;
 	private List<Question> question;
 	
-	public Quiz(LocalDateTime startTime, LocalDateTime endTime, double duration, Professor professor) {
+	public Quiz(Long id,LocalDateTime startTime, LocalDateTime endTime, double duration, Professor professor) {
+		this.id = id;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.duration = duration;
 		this.professor = professor;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public LocalDateTime getStartTime() {
 		return startTime;

@@ -15,13 +15,13 @@ public class StudentDashBoard {
     private Label studentLbl;
 
     @FXML
-    void doQuizBtnAction(ActionEvent event) {
-
+    void doQuizBtnAction(ActionEvent event) throws IOException {
+    	App.setRoot("chooseQuiz");
     }
 
     @FXML
-    void logoutBtnAction(ActionEvent event) {
-
+    void logoutBtnAction(ActionEvent event) throws IOException {
+    	App.setRoot("login");
     }
 
     @FXML
