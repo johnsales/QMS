@@ -16,8 +16,7 @@ public class Quiz {
 	@Override
 	public String toString()
 	{
-		return "Quizz: \n Start time: "+startTime+" \n End Time:  "+endTime
-				+"\n DUration: "+duration+"\n";
+		return "Quizz: (start time: "+startTime+" - "+endTime+") - " + professor.getName();
 	}
 	
 	public Quiz(Long id,LocalDateTime startTime, LocalDateTime endTime, double duration, Professor professor) {

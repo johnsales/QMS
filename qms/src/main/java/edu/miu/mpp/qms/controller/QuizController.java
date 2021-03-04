@@ -1,11 +1,17 @@
 package edu.miu.mpp.qms.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.inject.Inject;
+
+import edu.miu.mpp.qms.App;
 import edu.miu.mpp.qms.business.Options;
+import edu.miu.mpp.qms.business.Question;
+import edu.miu.mpp.qms.business.Quiz;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +21,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
 public class QuizController implements Initializable{
+
+	private int questionCounter = 0;
+    private Quiz quiz;
 
     @FXML
     private Button logout;
@@ -47,20 +56,38 @@ public class QuizController implements Initializable{
     private Button nextButtonId;
 
     Set<Options> userOptions;
+    Question currentQuestion;
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		userOptions = new HashSet<>();
+		quiz = ChooseQuiz.getQuiz();
+		quiztitle.setText(quiz.toString());
+		prepareNextQuestion();
 	}
+
+	
 	
 	@FXML
-    void cancelAction(ActionEvent event) {
+    void cancelAction(ActionEvent event) throws IOException {
 		userOptions = new HashSet<>();
+		quiz = null;
+		questionCounter = 0;
+		App.setRoot("studentDashBoard");
     }
 
     @FXML
     void nextAction(ActionEvent event) {
-    	userOptions.add(null);
+    	if(opt1.isSelected())
+        	userOptions.add(currentQuestion.getOptions().get(0));
+    	else if(opt2.isSelected())
+    		userOptions.add(currentQuestion.getOptions().get(1));
+    	else if(opt3.isSelected())
+    		userOptions.add(currentQuestion.getOptions().get(2));
+    	else
+    		userOptions.add(currentQuestion.getOptions().get(3));
+    	questionCounter++;
+    	prepareNextQuestion();
     }
 
     @FXML
@@ -68,5 +95,52 @@ public class QuizController implements Initializable{
     	//TODO
     }
 
+    private void prepareNextQuestion() {
+		if(quiz.getQuestion().size() > questionCounter) {
+			
+			currentQuestion = quiz.getQuestion().get(questionCounter);
+			questiontext.setText(currentQuestion.getLabel());
+			
+			//setting the values in the options
+			if(currentQuestion.getOptions().size() > 0)
+				opt1.setText(currentQuestion.getOptions().get(0).getDescription());
+			else {
+				opt1.setVisible(false);
+				opt2.setVisible(false);
+				opt3.setVisible(false);
+				opt4.setVisible(false);
+			}
+			if(currentQuestion.getOptions().size() > 1)
+				opt2.setText(currentQuestion.getOptions().get(1).getDescription());
+			else {
+				opt2.setVisible(false);
+				opt3.setVisible(false);
+				opt4.setVisible(false);
+			}
+			if(currentQuestion.getOptions().size() > 2)
+				opt1.setText(currentQuestion.getOptions().get(2).getDescription());
+			else {
+				opt3.setVisible(false);
+				opt4.setVisible(false);
+			}
+			if(currentQuestion.getOptions().size() > 3)
+				opt1.setText(currentQuestion.getOptions().get(3).getDescription());
+			else
+				opt4.setVisible(false);
+		}else { 
+			questiontext.setText("Question was not written");
+			opt1.setDisable(true);
+			opt1.setDisable(true);
+			opt1.setDisable(true);
+			opt1.setDisable(true);
+		}
+	}
+    
+    public Quiz getQuiz() {
+		return quiz;
+	}
+    public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
 }
 

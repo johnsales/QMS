@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import edu.miu.mpp.qms.App;
+import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +16,13 @@ import javafx.scene.control.ComboBox;
 
 public class ChooseQuiz implements Initializable{
 
+    private static Quiz quiz;
+
     @FXML
     private Button logout;
 
     @FXML
-    private ComboBox<String> selectQuiz;
+    private ComboBox<Quiz> selectQuiz;
 
     @FXML
     private Button startquiz;
@@ -34,10 +37,7 @@ public class ChooseQuiz implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		selectQuiz.getItems().addAll(
-				LoadData.getQuizzes().stream().map(q -> "Quiz of "+q.getProfessor().getName() + " ("+q.getStartTime()+" - "+q.getEndTime()+")").collect(Collectors.toList())
-		);
-		LoadData.getQuizzes();
+		selectQuiz.getItems().addAll(LoadData.getQuizzes());
 	}
 	
 	 @FXML
@@ -46,6 +46,14 @@ public class ChooseQuiz implements Initializable{
     }
 	 @FXML
     void startQuiz(ActionEvent event) throws IOException {
-    	App.setRoot("quiz"); 
+		 quiz = selectQuiz.getSelectionModel().getSelectedItem();
+		 App.sendQuizToQuizController(quiz, "quiz");
     }
+	 
+	 public static Quiz getQuiz() {
+		return quiz;
+	}
+	 public static void setQuiz(Quiz quiz) {
+		ChooseQuiz.quiz = quiz;
+	}
 }
