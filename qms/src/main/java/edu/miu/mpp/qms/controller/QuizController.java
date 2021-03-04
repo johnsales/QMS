@@ -22,7 +22,8 @@ public class QuizController implements Initializable{
 
 	private int questionCounter = 0;
     private Quiz quiz;
-
+    private static double quizScore = 0;
+    
     @FXML
     private Button logout;
 
@@ -64,14 +65,13 @@ public class QuizController implements Initializable{
 		prepareNextQuestion();
 	}
 
-	
-	
 	@FXML
     void cancelAction(ActionEvent event) throws IOException {
 		userOptions = new ArrayList<>();
 		quiz = null;
 		questionCounter = 0;
 		App.setRoot("studentDashBoard");
+		currentQuestion = null;
     }
 
     @FXML
@@ -100,9 +100,24 @@ public class QuizController implements Initializable{
 
     @FXML
     void submittAction(ActionEvent event) {
-    	//TODO
+    	
     }
 
+    public double calcScore() {
+    	int questionQuantity = quiz.getQuestion().size();
+    	int userCorrectAnswers = 0;
+    	
+    	for (int i = 0; i < questionQuantity; i++) {
+			for (int j = 0; j < quiz.getQuestion().get(i).getOptions().size(); j++) {
+				if(quiz.getQuestion().get(i).getOptions().get(j).isValid() && 
+				   quiz.getQuestion().get(i).getOptions().get(j).equals(userOptions.get(i)))
+					userCorrectAnswers++;
+			}
+		}
+    	quizScore = (userCorrectAnswers * 100) / questionQuantity; 
+    	return quizScore;
+    }
+    
     private void prepareNextQuestion() {
 		if(quiz.getQuestion().size() > questionCounter) {
 			
