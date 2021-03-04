@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miu.mpp.qms.controller.ControlQuizSummary">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miu.mpp.qms.controller.ControlQuizSummary">
    <children>
       <TextField fx:id="startTime" layoutX="157.0" layoutY="27.0" />
       <TextField fx:id="stopTime" layoutX="157.0" layoutY="60.0" />
@@ -27,8 +27,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="backQuestionManagement" layoutX="452.0" layoutY="492.0" mnemonicParsing="false" onAction="#backQuestionManagementAction" text="Back" />
-      <Button fx:id="confirm" layoutX="512.0" layoutY="492.0" mnemonicParsing="false" onAction="#confirmAction" text="Confirm" />
-      <ListView fx:id="quizSummaryListView" layoutX="53.0" layoutY="139.0" prefHeight="337.0" prefWidth="518.0" />
+      <Button fx:id="backQuestionManagement" layoutX="418.0" layoutY="348.0" mnemonicParsing="false" onAction="#backQuestionManagementAction" prefHeight="27.0" prefWidth="58.0" text="Back" />
+      <Button fx:id="confirm" layoutX="491.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmAction" text="Confirm" />
+      <ListView fx:id="quizSummaryListView" layoutX="53.0" layoutY="139.0" prefHeight="200.0" prefWidth="500.0" />
    </children>
 </AnchorPane>

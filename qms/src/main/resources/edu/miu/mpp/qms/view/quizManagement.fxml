@@ -48,12 +48,12 @@
       </HBox>
       <HBox prefHeight="86.0" prefWidth="400.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="64.0" text="Duration">
+            <Label prefHeight="17.0" prefWidth="81.0" text="Duration (min)">
                <HBox.margin>
                   <Insets left="20.0" top="20.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="duration" prefHeight="27.0" prefWidth="187.0">
+            <TextField fx:id="duration" prefHeight="27.0" prefWidth="171.0">
                <HBox.margin>
                   <Insets left="20.0" top="15.0" />
                </HBox.margin>

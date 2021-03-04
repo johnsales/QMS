@@ -61,6 +61,11 @@ public class QuizManagementController extends Controller {
 //		LocalDate startT = startime.getValue();
 //		LocalDate endT = endTime.getValue();
 		getQuizFromForm();
+
+//		double durationT = Double.parseDouble(duration.getText());
+		//Professor prof = new Professor("okalu", "test", "Obina", "Kalu", UserType.PROFESSOR);
+		//quiz.setProfessor(prof);
+		
 		//App.showSceneWithData(quiz, "questionManagement");
 		App.showQuestionWithData(quiz, "questionManagement");
 		
