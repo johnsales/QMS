@@ -63,11 +63,7 @@ public class QuizManagementController extends Controller {
 		getQuizFromForm();
 //		double durationT = Double.parseDouble(duration.getText());
 		Professor prof = new Professor("okalu", "test", "Obina", "Kalu", UserType.PROFESSOR);
-		
 		quiz.setProfessor(prof);
-		
-//		this.setQuiz(quiz);
-//		System.out.println(quiz.toString());
 		
 		//App.showSceneWithData(quiz, "questionManagement");
 		App.showQuestionWithData(quiz, "questionManagement");
