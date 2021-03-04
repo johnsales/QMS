@@ -101,6 +101,7 @@ public class QuizController implements Initializable{
     @FXML
     void submittAction(ActionEvent event) {
     	//TODO
+    	App.sendQuizToCongratController(20.0, "congratPage");
     }
 
     private void prepareNextQuestion() {
