@@ -1,19 +1,16 @@
 package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.miu.mpp.qms.App;
 import edu.miu.mpp.qms.business.Options;
-import edu.miu.mpp.qms.business.Professor;
 import edu.miu.mpp.qms.business.Question;
 import edu.miu.mpp.qms.business.Quiz;
-import edu.miu.mpp.qms.business.UserType;
-import edu.miu.mpp.qms.dao.LoadData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -76,6 +73,7 @@ public class QuestionManagementController extends Controller {
 	}
 
 	private Quiz quiz;
+	int order = 0;
 
 	public Quiz getQuiz() {
 		return quiz;
@@ -83,6 +81,8 @@ public class QuestionManagementController extends Controller {
 
 	public void setQuiz(Quiz parent) {
 		this.quiz = parent;
+		//logoutButton.setText(parent.getDuration()+"");
+		//questionTxtField.setText("Duration: "+parent.getDuration()+" - ");
 	}
 
 	/**
@@ -93,24 +93,40 @@ public class QuestionManagementController extends Controller {
 	}
 
 	@FXML
-	public void initialize() {
+	public void initialize(Quiz quiz) {
 		ToggleGroup group = new ToggleGroup();
+		setQuiz(quiz);
 		correctARadio.setToggleGroup(group);
 		correctBRadio.setToggleGroup(group);
 		correctCRadio.setToggleGroup(group);
 		correctDRadio.setToggleGroup(group);
-		//System.out.println("Data sent: "+quiz.getDuration());
-		//parent = super.getQuiz();
+		
 	}
 
 //    
 	@FXML
 	private void switchToquiz() throws IOException {
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+    	
 		App.setRoot("quizManagement");
 	}
 
 	@FXML
-	void confirmQuestion(ActionEvent event) {
+	
+	synchronized void confirmQuestion(ActionEvent event) {
+		//System.out.println("local: "+quiz+ "\n getter: "+getQuiz());
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+		
+		Quiz q = getQuiz();
+		App.showQuestionToControlQuiz(q, "quizSummary");
 
 	}
 
@@ -127,14 +143,13 @@ public class QuestionManagementController extends Controller {
 
 	public Question getQuestion(Quiz quizz) {
 		String questionLabel = questionTxtField.getText();
-
 		List<String> options = new ArrayList<String>();
 		options.add(opt1TxtField.getText());
 		options.add(opt2TxtField.getText());
 		options.add(opt3TxtField.getText());
 		options.add(opt4TxtField.getText());
 		
-		return new Question(questionLabel, "1", quiz);
+		return new Question(questionLabel, ""+ (order++), quiz);
 
 	}
 	
@@ -160,36 +175,24 @@ public class QuestionManagementController extends Controller {
 
 	@FXML
 	void addQuestion(ActionEvent event) {
-
-//    	Quiz
-//		System.out.println("Data: "+quiz.getDuration()+"");
-//		Professor prof = new Professor("okalu", "test", "Obina", "Kalu", UserType.PROFESSOR);
-//		LocalDateTime startTime = LocalDateTime.of(2021, 02, 28, 00, 00);
-//		LocalDateTime endTime = LocalDateTime.of(2021, 03, 01, 00, 00);
-//		
-//		Quiz quiz = new Quiz(startTime, endTime, 20, prof);
-		Question question = getQuestion(quiz);
-		System.out.println("Data sent: "+quiz.getDuration());
 		
+		
+		validatingFields();
+    	if (validateMessage.length() > 0) {
+    		alertMessage();
+    		return;
+    	}
+    	
+		Question question = getQuestion(quiz);
+		//System.out.println("Data sent: "+quiz.getDuration());
 		
 		question = addOptions(question);
-		System.out.println(question.getLabel());
+		//System.out.println(question.getLabel());
 		
-		listQuestions.add(question);
+		quiz.getQuestion().add(question);
 		
 		//Set Fields to default values
 		setQuestionToDefault();
-		
-		// LoadData.getQuizzes().add(parent);
-//		List<Quiz> data = new ArrayList<Quiz>();
-//		data.add(quiz);
-		
-		for (Question q : listQuestions) {
-			System.out.println(q.getLabel()+" ");
-			//q.getOptions().stream().forEach(quest -> System.out.println("  "+quest.getDescription()));
-			
-		}
-
 	}
 
 	@FXML
@@ -198,14 +201,47 @@ public class QuestionManagementController extends Controller {
 		Quiz u = holder.getQuiz();
 
 	}
+	
+	   String validateMessage ;
+	    public void validatingFields() {
+	    	validateMessage = "";
+	    	
+	    	if (questionTxtField.getText().length() < 1 ) {
+	    		validateMessage = "Enter Question\n";
+	    	}
+	    	
+	    
+	    	if (opt1TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 1\n";
+	    	}
+	    	
+	    	if (opt2TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 2\n";
+	    	}
+	    	
+	    	if (opt3TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 3\n";
+	    	}
+	    	
+	    	if (opt3TxtField.getText().length() < 1) {
+	    		validateMessage = validateMessage +"Enter Question Option 4\n";
+	    	}
+	    	
+	    	if(!correctARadio.isSelected() && !correctBRadio.isSelected() && !correctCRadio.isSelected() && !correctDRadio.isSelected()) {
+	    		validateMessage = validateMessage +"Select Correct Answer\n";
 
-	@FXML
-	private void confirmQuestion() throws IOException {
-		// finishBtn.setText("Congrat!");
-		// mainApp.getPrimaryStage().
-		// mainApp.initRootLayout();
-		App.setRoot("quizzSummary");
-
+	    	}	    
+	    	
+	    }
+	    
+	    public void alertMessage() {
+	  	  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	  	    alert.setTitle("Alert");
+	  	    alert.setHeaderText("Data Missing");
+	  	    alert.setContentText(validateMessage);
+	  	    alert.showAndWait();
+	 
 	}
+
 
 }
