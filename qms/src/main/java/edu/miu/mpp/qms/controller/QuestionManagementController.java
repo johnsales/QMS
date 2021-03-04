@@ -169,7 +169,7 @@ public class QuestionManagementController extends Controller {
 //		
 //		Quiz quiz = new Quiz(startTime, endTime, 20, prof);
 		Question question = getQuestion(quiz);
-		System.out.println("Data sent: "+quiz.getDuration());
+		//System.out.println("Data sent: "+quiz.getDuration());
 		
 		
 		question = addOptions(question);
