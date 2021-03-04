@@ -56,12 +56,12 @@
                      <children>
                         <VBox prefHeight="150.0" prefWidth="100.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="correctA">
+                              <RadioButton fx:id="correctARadio" mnemonicParsing="false" text="correctA">
                                  <VBox.margin>
                                     <Insets left="10.0" top="15.0" />
                                  </VBox.margin>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="correctB">
+                              <RadioButton fx:id="correctBRadio" mnemonicParsing="false" text="correctB">
                                  <VBox.margin>
                                     <Insets left="10.0" top="20.0" />
                                  </VBox.margin>
@@ -71,7 +71,7 @@
                                     <Insets left="10.0" top="20.0" />
                                  </VBox.margin>
                               </RadioButton>
-                              <RadioButton fx:id="correctCRadio" mnemonicParsing="false" text="correctD">
+                              <RadioButton fx:id="correctDRadio" mnemonicParsing="false" text="correctD">
                                  <VBox.margin>
                                     <Insets left="10.0" top="15.0" />
                                  </VBox.margin>
@@ -84,19 +84,20 @@
             </VBox>
          </children>
       </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#switchToquiz" text="Cancel">
+            <Button fx:id="cancelBtn1" mnemonicParsing="false" onAction="#switchToquiz" text="Cancel">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="finishBtn" mnemonicParsing="false" onAction="#saveQuestion" text="Finish">
+            <Button fx:id="nextBtn" mnemonicParsing="false" onAction="#addQuestion" text="Next">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="nextBtn" mnemonicParsing="false" onAction="#confirmQuestion" text="Next">
+            <Button fx:id="finishBtn" mnemonicParsing="false" onAction="#confirmQuestion" text="Finish">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
                </HBox.margin>

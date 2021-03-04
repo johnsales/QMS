@@ -19,4 +19,12 @@ public class LoadData {
 	public static List<User> getUsers() {
 		return userList;
 	}
+	
+	public static List<Quiz> getQuizzes() {
+		return quizzes;
+	}
+	
+	public static List<Professor> getProfessors() {
+		return professorList;
+	}
 }
