@@ -2,9 +2,11 @@ package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import edu.miu.mpp.qms.App;
 import edu.miu.mpp.qms.business.Professor;
+import edu.miu.mpp.qms.business.Question;
 import edu.miu.mpp.qms.business.Quiz;
 import edu.miu.mpp.qms.business.UserType;
 import javafx.fxml.FXML;
@@ -41,64 +43,26 @@ public class QuizManagementController extends Controller {
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
 	}
-
-//	@FXML
-//	private void switchToQuestion(ActionEvent event) throws IOException {
-//		// Step 1
-//		LocalDate startT = startime.getValue();
-//		LocalDate endT = endTime.getValue();
-//
-//		double durationT = Double.parseDouble(duration.getText());
-//		Professor prof = new Professor("okalu", "test", "Obina", "Kalu", UserType.PROFESSOR);
-//		quiz = new Quiz(startT.atStartOfDay(), endT.atStartOfDay(), durationT, prof);
-//
-//		Node node = (Node) event.getSource();
-//		Stage stage = (Stage) node.getScene().getWindow();
-//		stage.close();
-//
-//		// QuizHolder holder = QuizHolder.getInstance();
-//		// Step 3
-//		//holder.setQuiz(quiz);
-//		App.setRoot("questionManagement");
-//		try {
-//			 FXMLLoader loader = FXMLLoader.load(getClass().getClassLoader().getResource("../view/questionManagement.fxml"));
-//			    
-//			//Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SceneB.fxml"));
-//			// Step 2
-//			//QuizHolder holder = QuizHolder.getInstance();
-//			// Step 3
-//			//holder.setQuiz(quiz);
-//			// Step 4
-//			QuestionManagementController controller = new QuestionManagementController();
-//			controller.setParent(quiz);
-//
-//			// Step 4
-//			loader.setController(controller);
-//			// Step 5
-//			Parent root = loader.load();
-//			
-//			Scene scene = new Scene(root);
-//			stage.setScene(scene);
-//			stage.show();
-//		} catch (IOException e) {
-//			System.err.println(String.format("Error: %s", e.getMessage()));
-//		}
-//	}
+	
+	public void getQuizFromForm() {
+		quiz = new Quiz();
+		LocalDate lStart = startime.getValue();
+		LocalDate lEnd = endTime.getValue();
+		LocalDateTime startTime = lStart.atStartOfDay();
+		LocalDateTime endTime = lEnd.atStartOfDay();
+		
+		quiz.setDuration(duration.getText().equals(null)?0:Integer.parseInt(duration.getText()));
+		quiz.setStartTime(startTime);
+		quiz.setEndTime(endTime);
+	}
 
 	@FXML
 	private void switchToQuestion() throws IOException {
-		LocalDate startT = startime.getValue();
-		LocalDate endT = endTime.getValue();
-
-		/*double durationT = Double.parseDouble(duration.getText());
-		Professor prof = new Professor("okalu", "test", "Obina", "Kalu", UserType.PROFESSOR);
-		quiz = new Quiz(startT.atStartOfDay(), endT.atStartOfDay(), durationT, prof);
-		this.setQuiz(quiz);
-		*/
-		System.out.println(quiz.toString());
-		
-		App.showSceneWithData(quiz, "questionManagement");
-		//App.showQuestionWithData(quiz, "questionManagement");
+//		LocalDate startT = startime.getValue();
+//		LocalDate endT = endTime.getValue();
+		getQuizFromForm();
+		//App.showSceneWithData(quiz, "questionManagement");
+		App.showQuestionWithData(quiz, "questionManagement");
 		
 		//App.setRoot("questionManagement");
 	}
