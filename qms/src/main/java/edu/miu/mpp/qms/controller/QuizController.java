@@ -2,11 +2,9 @@ package edu.miu.mpp.qms.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
-
-import javax.inject.Inject;
 
 import edu.miu.mpp.qms.App;
 import edu.miu.mpp.qms.business.Options;
@@ -55,12 +53,12 @@ public class QuizController implements Initializable{
     @FXML
     private Button nextButtonId;
 
-    Set<Options> userOptions;
+    List<Options> userOptions;
     Question currentQuestion;
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		userOptions = new HashSet<>();
+		userOptions = new ArrayList<>();
 		quiz = ChooseQuiz.getQuiz();
 		quiztitle.setText(quiz.toString());
 		prepareNextQuestion();
@@ -70,7 +68,7 @@ public class QuizController implements Initializable{
 	
 	@FXML
     void cancelAction(ActionEvent event) throws IOException {
-		userOptions = new HashSet<>();
+		userOptions = new ArrayList<>();
 		quiz = null;
 		questionCounter = 0;
 		App.setRoot("studentDashBoard");
@@ -78,14 +76,24 @@ public class QuizController implements Initializable{
 
     @FXML
     void nextAction(ActionEvent event) {
-    	if(opt1.isSelected())
-        	userOptions.add(currentQuestion.getOptions().get(0));
-    	else if(opt2.isSelected())
-    		userOptions.add(currentQuestion.getOptions().get(1));
-    	else if(opt3.isSelected())
+    	if(opt1.isSelected()) {
+    		userOptions.add(currentQuestion.getOptions().get(0));
+        	opt1.setSelected(false);
+    	}
+        else if(opt2.isSelected()) {
+        	userOptions.add(currentQuestion.getOptions().get(1));
+        	opt2.setSelected(false);
+        }
+    		
+    	else if(opt3.isSelected()) {
     		userOptions.add(currentQuestion.getOptions().get(2));
+    		opt3.setSelected(false);
+    	}
     	else
+    	{
     		userOptions.add(currentQuestion.getOptions().get(3));
+    		opt4.setSelected(false);
+    	}
     	questionCounter++;
     	prepareNextQuestion();
     }
@@ -130,9 +138,10 @@ public class QuizController implements Initializable{
 		}else { 
 			questiontext.setText("Question was not written");
 			opt1.setDisable(true);
-			opt1.setDisable(true);
-			opt1.setDisable(true);
-			opt1.setDisable(true);
+			opt2.setDisable(true);
+			opt3.setDisable(true);
+			opt4.setDisable(true);
+			nextButtonId.setDisable(true);
 		}
 	}
     
